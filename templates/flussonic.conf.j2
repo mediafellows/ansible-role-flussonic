@@ -1,0 +1,34 @@
+# Flussonic streaming server configuration
+# {{ ansible_managed }}
+
+# Default ports Flussonic M1 Media server listens on
+http 80;
+
+###################################################
+# Example VOD configuration that will serve videos from directory VOD that locks playback down to specific domains
+# VOD PLAYBACK URL EXAMPLES - Note we recommend all videos to mp .mp4 format using H.264 with AAC audio
+# HLS http://flussonic_server_url:8080/vodplayback/file.mp4/index.m3u8
+# HDS http://flussonic_server_url:8080/vodplayback/file.mp4/manifest.f4m
+# RTMP  http://flussonic_server_url:1935/vodplayback/file.mp4
+#
+###################################################
+
+file {{ flussonic_vod_path }} {
+  path s3://{{ flussonic_bucket_aws_access_key }}:{{ flussonic_bucket_aws_secret_key }}@s3.amazonaws.com/{{ flussonic_bucket_name }};
+  cache /cache 2G 2d misses=2;
+  read_queue 10;
+  # encryption
+  hds off;
+  rtmp off;
+  rtsp off;
+  dash off;
+  # keyserver
+  drm aes128 keyserver={{ flussonic_keyserver_url }};
+  auth {{ flussonic_authserver_url }};
+}
+
+# Password protection for admin area
+edit_auth {{ flussonic_admin_user }} {{ flussonic_admin_pw }};
+view_auth {{ flussonic_admin_user }} {{ flussonic_admin_pw }};
+
+# All non VOD options are stripped from this config file, features might be added to the role lateron

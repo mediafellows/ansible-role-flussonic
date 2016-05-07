@@ -1,2 +1,58 @@
 ---
 # tasks file for mediapeers.flussonic
+
+- name: Create video bucket S3 (run on ansible host)
+  s3:
+    bucket: "{{ flussonic_bucket_name }}"
+    mode: create
+    region: "{{ s3_aws_region }}"
+  delegate_to: 127.0.0.1
+  become: false
+  when: s3_create_bucket
+
+
+- name: Add flussonic apt repository key
+  apt_key:
+    url: 'http://debian.erlyvideo.org/binary/gpg.key'
+    state: present
+
+- name: Add flussonic apt repository
+  apt_repository:
+    repo: 'deb http://debian.erlyvideo.org binary/'
+    update_cache: yes
+    state: present
+
+- name: Install flussonic apt packages
+  apt:
+    name: "{{ item }}"
+    state: latest
+  with_items:
+    - flussonic
+    - flussonic-ffmpeg
+    - flussonic-python
+
+- name: Put licence.txt in place
+  template:
+    src: license.txt.j2
+    dest: /etc/flussonic/licence.txt
+
+- name: Add flussonic configuration
+  template:
+    src: flussonic.conf.j2
+    dest: /etc/flussonic/flussonic.conf
+  notify:
+    - start flussonic
+
+- name: Add crossdomain policy (when enabled)
+  copy:
+    src: crossdomain.xml
+    dest: /opt/flussonic/wwwroot/crossdomain.xml
+  when: flussonic_crossdomain
+
+- name: Get Flussonic status
+  command: /etc/init.d/flussonic status
+  register: flussonic_status
+
+- name: Flussonic status output
+  debug:
+    msg: "{{ flussonic_status.stdout }}"

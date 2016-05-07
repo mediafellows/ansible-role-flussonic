@@ -1,2 +1,13 @@
 ---
 # handlers file for mediapeers.flussonic
+
+- name: start flussonic
+  service:
+    name: flussonic
+    state: started
+
+- name: restart flussonic
+  service:
+    name: flussonic
+    state: restarted
+
