@@ -7,6 +7,13 @@
 # Name for VOD endpoint
 flussonic_vod_path: vodplayback
 
+# VOD key/authserver settings
+flussonic_vod_keyserver_url: https://some-keyserver.com/key
+flussonic_vod_authserver_url: https://some-authserver.com/auth
+
+# VOD caching
+flussonic_vod_cache_size: 2G
+
 # Admin credentials, overwrite!
 flussonic_admin_user: admin
 flussonic_admin_pw: pleaseChangeMe

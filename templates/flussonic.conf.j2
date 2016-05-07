@@ -15,7 +15,7 @@ http 80;
 
 file {{ flussonic_vod_path }} {
   path s3://{{ flussonic_bucket_aws_access_key }}:{{ flussonic_bucket_aws_secret_key }}@s3.amazonaws.com/{{ flussonic_bucket_name }};
-  cache /cache 2G 2d misses=2;
+  cache /cache {{ flussonic_vod_cache_size }} 2d misses=2;
   read_queue 10;
   # encryption
   hds off;
@@ -23,8 +23,8 @@ file {{ flussonic_vod_path }} {
   rtsp off;
   dash off;
   # keyserver
-  drm aes128 keyserver={{ flussonic_keyserver_url }};
-  auth {{ flussonic_authserver_url }};
+  drm aes128 keyserver={{ flussonic_vod_keyserver_url }};
+  auth {{ flussonic_vod_authserver_url }};
 }
 
 # Password protection for admin area
