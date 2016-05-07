@@ -1,5 +1,8 @@
 ---
 - hosts: localhost
-  remote_user: root
+  become: true
+  vars:
+    flussonic_licence_key: abc123
+    s3_create_bucket: false
   roles:
-    - mediapeers.flussonic
+    - ansible-role-flussonic
