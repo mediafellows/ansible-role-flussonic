@@ -22,8 +22,8 @@ install:
   - printf '[defaults]\nroles_path=../' > ansible.cfg
 
   # Ruby stuff to get serverspec installed
-  - ruby -v
-  - gem install serverspec
+  - sudo ruby -v
+  - sudo gem install serverspec
 
 script:
   # Basic role syntax check
@@ -37,9 +37,9 @@ script:
     && (echo 'Idempotence test: pass' && exit 0)
     || (echo 'Idempotence test: fail' && exit 1)
   # Output contents of flussonic.conf for manual check
-  - cat /etc/flussonic/flussonic.conf
+  - sudo cat /etc/flussonic/flussonic.conf
   # Run serverspec
-  - rake spec
+  - sudo rake spec
 
 notifications:
   webhooks: https://galaxy.ansible.com/api/v1/notifications/
