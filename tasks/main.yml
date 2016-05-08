@@ -53,5 +53,4 @@
   register: flussonic_status
 
 - name: Flussonic status output
-  debug:
-    msg: "{{ flussonic_status.stdout }}"
+  debug: var=flussonic_status
