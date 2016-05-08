@@ -10,7 +10,6 @@
   become: false
   when: s3_create_bucket
 
-
 - name: Add flussonic apt repository key
   apt_key:
     url: 'http://debian.erlyvideo.org/binary/gpg.key'
