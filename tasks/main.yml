@@ -30,10 +30,10 @@
     - flussonic-ffmpeg
     - flussonic-python
 
-- name: Put licence.txt in place
+- name: Put license.txt in place
   template:
     src: license.txt.j2
-    dest: /etc/flussonic/licence.txt
+    dest: /etc/flussonic/license.txt
 
 - name: Add flussonic configuration
   template:
