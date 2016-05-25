@@ -17,7 +17,7 @@ describe "Flussonic VOD setup" do
     it { should be_directory }
   end
 
-  describe file('/etc/flussonic/licence.txt') do
+  describe file('/etc/flussonic/license.txt') do
     it { should be_file }
     its(:content) { should include(ANSIBLE_VARS.fetch('flussonic_licence_key', 'FAIL')) }
   end
