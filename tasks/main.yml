@@ -51,6 +51,7 @@
 - name: Get Flussonic status
   command: /etc/init.d/flussonic status
   register: flussonic_status
+  ignore_errors: yes
 
 - name: Flussonic status output
   debug: var=flussonic_status
