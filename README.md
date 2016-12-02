@@ -25,7 +25,7 @@ flussonic_admin_user: admin
 flussonic_admin_pw: pleaseChangeMe
 
 # AWS S3 bucket settings, overwrite:
-flussonic_bucket_name: my-streaming-videos
+flussonic_source_buckets: [ my-streaming-videos ]
 flussonic_bucket_aws_access_key: myAWSkey
 flussonic_bucket_aws_secret_key: myAWSkey
 # if set to true will create bucket on S3 from Ansible host
@@ -45,8 +45,15 @@ This role depends on no other roles.
 Include the role into your playbook in the usual way:
 
 ```yaml
-- name: My play
+- name: My flussonic play
   hosts: servers
+  vars:
+    flussonic_licence_key: abc123
+    flussonic_source_buckets:
+      - my-bucket
+    flussonic_bucket_aws_access_key: abs123
+    flussonic_bucket_aws_secret_key: abcxyz
+    flussonic_admin_pw: supersecret
   roles:
     - { role: mediapeers.flussonic, licence_key: abc123 }
 ```

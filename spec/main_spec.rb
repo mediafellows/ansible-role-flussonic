@@ -25,7 +25,14 @@ describe "Flussonic VOD setup" do
   describe file('/etc/flussonic/flussonic.conf') do
     it { should be_file }
     its(:content) { should include("file #{ANSIBLE_VARS.fetch('flussonic_vod_path', 'FAIL')} {") }
-    its(:content) { should include("path s3://#{ANSIBLE_VARS.fetch('flussonic_bucket_aws_access_key', 'FAIL')}:#{ANSIBLE_VARS.fetch('flussonic_bucket_aws_secret_key')}@s3.amazonaws.com/#{ANSIBLE_VARS.fetch('flussonic_bucket_name', 'FAIL')};") }
   end
 
+  describe file('/etc/flussonic/flussonic.conf') do
+    aws_key         = ANSIBLE_VARS.fetch('flussonic_bucket_aws_access_key', 'FAIL')
+    aws_secret_key  = ANSIBLE_VARS.fetch('flussonic_bucket_aws_secret_key', 'FAIL')
+
+    ANSIBLE_VARS.fetch('flussonic_source_buckets', ['FAIL']).each do |bucket|
+      its(:content) { should include("path s3://#{aws_key}:#{aws_secret_key}@s3.amazonaws.com/#{bucket};") }
+    end
+  end
 end
