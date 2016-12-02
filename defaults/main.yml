@@ -18,8 +18,10 @@ flussonic_vod_cache_size: 2G
 flussonic_admin_user: admin
 flussonic_admin_pw: pleaseChangeMe
 
-# AWS S3 bucket settings, overwrite!
-flussonic_bucket_name: my-streaming-videos
+# AWS S3 source bucket settings, overwrite!
+flussonic_source_buckets:
+    - my-streaming-videos
+    - my-other-streaming-videos
 flussonic_bucket_aws_access_key: myAWSkey
 flussonic_bucket_aws_secret_key: myAWSkey
 # if set to true will create bucket on S3 from Ansible host
