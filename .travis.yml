@@ -38,12 +38,12 @@ script:
   - ansible-playbook tests/test.yml -i tests/inventory --syntax-check
   # Real run:
   - ansible-playbook tests/test.yml -i tests/inventory --connection=local || echo "Done"
-  # Second run to check for indempotence:
+  # Second run to check for indempotence, allowing one 'change':
   - >
     ansible-playbook tests/test.yml -i tests/inventory --connection=local
-#    | grep -q 'changed=0.*failed=0'
-#    && (echo 'Idempotence test: pass' && exit 0)
-#    || (echo 'Idempotence test: fail' && exit 1)
+    | grep -q 'changed=1.*failed=0'
+    && (echo 'Idempotence test: pass' && exit 0)
+    || (echo 'Idempotence test: fail' && exit 1)
   # Output contents of flussonic.conf for manual check
   - sudo cat /etc/flussonic/flussonic.conf
   # Run serverspec
