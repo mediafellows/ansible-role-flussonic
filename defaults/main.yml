@@ -12,9 +12,13 @@ flussonic_vod_keyserver_url: https://some-keyserver.com/key
 flussonic_vod_authserver_url: https://some-authserver.com/auth
 
 # VOD caching
+# Since flussonic 4.6.14 you have to decide between segment cache and file cache.
+# The old parameters for the cache directive no longer work (in the same way).
+# See https://flussonic.com/doc/vod/cache
+flussonic_vod_cache_type: segments # or 'files'
 flussonic_vod_cache_dir: /tmp/flussinic_cache # location for cache, make sure enough space is provided
-flussonic_vod_cache_size: 2G # max size of entire cache
-flussonic_vod_cache_duration: 2d # amound of days to keep cached items
+flussonic_vod_cache_size: 4G # max size of entire cache in GB
+flussonic_vod_cache_duration: 2d # amound of hours (h) or days (d) to keep cached items
 flussonic_vod_cache_misses: 5 # amount of misses before caching requests
 
 # Admin credentials, overwrite!

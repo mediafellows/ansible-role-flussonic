@@ -17,7 +17,11 @@ file {{ flussonic_vod_path }} {
 {% for bucket in flussonic_source_buckets %}
   path s3://{{ flussonic_bucket_aws_access_key }}:{{ flussonic_bucket_aws_secret_key }}@s3.amazonaws.com/{{ bucket }};
 {% endfor %}
-  cache {{ flussonic_vod_cache_dir }} misses={{ flussonic_vod_cache_misses }} {{ flussonic_vod_cache_duration }} {{ flussonic_vod_cache_size }};
+{% if flussonic_vod_cache_type == 'segments'  %}
+  segment_cache {{ flussonic_vod_cache_dir }} {{ flussonic_vod_cache_size }} {{ flussonic_vod_cache_duration }} misses={{ flussonic_vod_cache_misses }};
+{% elif flussonic_vod_cache_type == 'files' %}
+  cache {{ flussonic_vod_cache_dir }} {{ flussonic_vod_cache_size }};
+{% endif %}
   read_queue 10;
   # encryption
   hds off;
