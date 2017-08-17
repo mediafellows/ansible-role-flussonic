@@ -17,7 +17,7 @@ file {{ flussonic_vod_path }} {
 {% for bucket in flussonic_source_buckets %}
   path s3://{{ flussonic_bucket_aws_access_key }}:{{ flussonic_bucket_aws_secret_key }}@s3.amazonaws.com/{{ bucket }};
 {% endfor %}
-  cache /cache {{ flussonic_vod_cache_size }} 2d misses=2;
+  cache {{ flussonic_vod_cache_dir }} misses={{ flussonic_vod_cache_misses }} {{ flussonic_vod_cache_duration }} {{ flussonic_vod_cache_size }};
   read_queue 10;
   # encryption
   hds off;

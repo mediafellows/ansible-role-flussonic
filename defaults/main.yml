@@ -12,7 +12,10 @@ flussonic_vod_keyserver_url: https://some-keyserver.com/key
 flussonic_vod_authserver_url: https://some-authserver.com/auth
 
 # VOD caching
-flussonic_vod_cache_size: 2G
+flussonic_vod_cache_dir: /tmp/flussinic_cache # location for cache, make sure enough space is provided
+flussonic_vod_cache_size: 2G # max size of entire cache
+flussonic_vod_cache_duration: 2d # amound of days to keep cached items
+flussonic_vod_cache_misses: 5 # amount of misses before caching requests
 
 # Admin credentials, overwrite!
 flussonic_admin_user: admin
