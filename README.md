@@ -38,6 +38,8 @@ s3_aws_region: us-east-1
 flussonic_crossdomain: false
 ```
 
+For more variables check the `defaults/main.yml` file.
+
 ## Dependencies
 This role depends on no other roles.
 
