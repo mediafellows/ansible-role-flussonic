@@ -2,9 +2,9 @@
 # tasks file for mediapeers.flussonic
 
 - name: Create video bucket S3 (run on ansible host)
-  s3:
-    bucket: "{{ flussonic_bucket_name }}"
-    mode: create
+  s3_bucket:
+    name: "{{ flussonic_bucket_name }}"
+    state: present
     region: "{{ s3_aws_region }}"
   delegate_to: 127.0.0.1
   become: false
