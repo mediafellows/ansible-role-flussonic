@@ -39,6 +39,15 @@
   template:
     src: flussonic.conf.j2
     dest: /etc/flussonic/flussonic.conf
+  when: flussonic_config_file is undefined
+  notify:
+    - start flussonic
+
+- name: Overwrite config with custom one
+  template:
+    src: "{{ flussonic_config_file }}"
+    dest: /etc/flussonic/flussonic.conf
+  when: flussonic_config_file is defined
   notify:
     - start flussonic
 
