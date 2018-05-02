@@ -35,7 +35,7 @@
     src: license.txt.j2
     dest: /etc/flussonic/license.txt
 
-- name: Add flussonic configuration
+- name: Add flussonic configuration (based on role template & params)
   template:
     src: flussonic.conf.j2
     dest: /etc/flussonic/flussonic.conf
@@ -43,7 +43,7 @@
   notify:
     - start flussonic
 
-- name: Overwrite config with custom one
+- name: Use custom template path for flussonic.conf
   template:
     src: "{{ flussonic_config_file }}"
     dest: /etc/flussonic/flussonic.conf

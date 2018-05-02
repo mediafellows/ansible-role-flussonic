@@ -15,7 +15,8 @@ flussonic_log_level: info
 flussonic_log_requests: false
 
 # Set path to a custom config which will be taken replace flussonic.conf (instead of the roles template)
-# flussonic_config_file: my/path/to/flussonic.conf
+# Make sure it path doesn't end on flussonic.conf.j2 as due some presendence issues the one in the role will be taken.
+# flussonic_config_file: my/path/to/flussonic_custom_template.conf.j2
 
 # Name for VOD endpoint
 flussonic_vod_path: vodplayback
