@@ -8,6 +8,7 @@
 flussonic_server_port: 80
 
 # Global default settings
+flussonic_user: root
 flussonic_pulsedb_location: /var/lib/flussonic
 flussonic_sesion_log_location: /var/lib/flussonic
 flussonic_log_level: info

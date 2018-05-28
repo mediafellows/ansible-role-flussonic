@@ -30,6 +30,29 @@
     - flussonic-ffmpeg
     - flussonic-python
 
+- name: Make sure flussonic system user exists
+  user:
+    name: "{{ flussonic_user }}"
+    steate: present
+
+- name: Make sure flussonic etc dir exists and belongs to flussonic_user
+  file:
+    path: /etc/flussonic
+    owner: "{{ flussonic_user }}"
+    state: directory
+
+- name: Make sure flussonic_vod_cache_dir exists and belongs to flussonic_user
+  file:
+    path: "{{ flussonic_vod_cache_dir }}"
+    owner: "{{ flussonic_user }}"
+    state: directory
+
+- name: Put run_as in place to define as which system user flussonic should run
+  template:
+    src: run_as
+    dest: /etc/flussonic/run_as
+    mode: 0644
+
 - name: Put license.txt in place
   template:
     src: license.txt.j2
@@ -39,6 +62,7 @@
   template:
     src: flussonic.conf.j2
     dest: /etc/flussonic/flussonic.conf
+    owner: "{{ flussonic_user }}"
   when: flussonic_config_file is undefined
   notify:
     - start flussonic
