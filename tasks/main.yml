@@ -33,7 +33,7 @@
 - name: Make sure flussonic system user exists
   user:
     name: "{{ flussonic_user }}"
-    steate: present
+    state: present
 
 - name: Make sure flussonic etc dir exists and belongs to flussonic_user
   file:
