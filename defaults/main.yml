@@ -4,6 +4,21 @@
 # You need to set a valid licence key, like this:
 # flussonic_licence_key: abc123
 
+# Default port
+flussonic_server_port: 80
+
+# Global default settings
+flussonic_user: root
+flussonic_pulsedb_location: /var/lib/flussonic
+flussonic_sesion_log_location: /var/lib/flussonic
+flussonic_log_level: info
+# Turns on logging all HTTP requests to /var/log/flussonic/access.log by setting to true
+flussonic_log_requests: false
+
+# Set path to a custom config which will be taken replace flussonic.conf (instead of the roles template)
+# Make sure it path doesn't end on flussonic.conf.j2 as due some presendence issues the one in the role will be taken.
+# flussonic_config_file: my/path/to/flussonic_custom_template.conf.j2
+
 # Name for VOD endpoint
 flussonic_vod_path: vodplayback
 
