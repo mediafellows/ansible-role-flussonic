@@ -1,19 +1,15 @@
 ---
 sudo: required
-dist: trusty
+dist: xenial
 
 language: python
 python: "2.7"
 
-# Install ansible
+# Install pip
 addons:
   apt:
     packages:
     - python-pip
-
-before_install:
-  # Clean up all the weird rubies (none coming from apt packages) from system
-  - sudo rm /usr/bin/ruby /usr/bin/gem
 
 install:
   # Install ansible
@@ -26,10 +22,7 @@ install:
   - printf '[defaults]\nroles_path=../' > ansible.cfg
 
   # Install ruby and serverspec gem as root
-  - sudo apt-get install -y ruby2.0
-  - sudo ln -s /usr/bin/ruby2.0 /usr/bin/ruby
-  - sudo ln -s /usr/bin/gem2.0 /usr/bin/gem
-  - sudo ln -s /usr/bin/rake2.0 /usr/bin/rake
+  - sudo apt-get install -y ruby
   - sudo ruby -v
   - sudo gem install serverspec
 
