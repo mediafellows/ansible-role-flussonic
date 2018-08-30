@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.org/mediapeers/ansible-role-flussonic.svg?branch=master)](https://travis-ci.org/mediapeers/ansible-role-flussonic)
+[![Build Status](https://travis-ci.com/mediapeers/ansible-role-flussonic.svg?branch=master)](https://travis-ci.com/mediapeers/ansible-role-flussonic)
 
 # Flussonic Ansible Role
 This is an Ansible role that installs the [Flussonic Streaming server](http://flussonic.com/) and configures it as VOD streaming server with an S3 bucket as source location.
