@@ -1,13 +1,17 @@
 ---
 # handlers file for mediapeers.flussonic
 
+# Ingore errors here as missing license can cause server to fail to start
+# which might be ok when just bakin a new image for later use
+
 - name: start flussonic
   service:
     name: flussonic
     state: started
+  ignore_errors: true
 
 - name: restart flussonic
   service:
     name: flussonic
     state: restarted
-
+  ignore_errors: true

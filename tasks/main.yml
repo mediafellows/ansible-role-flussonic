@@ -65,7 +65,7 @@
     owner: "{{ flussonic_user }}"
   when: flussonic_config_file is undefined
   notify:
-    - start flussonic
+    - restart flussonic
 
 - name: Use custom template path for flussonic.conf
   template:
@@ -73,13 +73,16 @@
     dest: /etc/flussonic/flussonic.conf
   when: flussonic_config_file is defined
   notify:
-    - start flussonic
+    - restart flussonic
 
 - name: Add crossdomain policy (when enabled)
   copy:
     src: crossdomain.xml
     dest: /opt/flussonic/wwwroot/crossdomain.xml
   when: flussonic_crossdomain
+
+- name: Run handlers (restarts etc) before checking status
+  meta: flush_handlers
 
 - name: Get Flussonic status
   command: /etc/init.d/flussonic status
