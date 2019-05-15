@@ -5,7 +5,7 @@ describe "Flussonic VOD setup" do
     it { should be_installed }
   end
 
-  package('flussonic-ffmpeg') do
+  package('flussonic-transcoder') do
     it { should be_installed }
   end
 
