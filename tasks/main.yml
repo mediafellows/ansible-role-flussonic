@@ -23,12 +23,11 @@
 
 - name: Install flussonic apt packages
   apt:
-    name: "{{ item }}"
+    name:
+      - flussonic
+      - flussonic-transcoder
+      - flussonic-python
     state: latest
-  with_items:
-    - flussonic
-    - flussonic-transcoder
-    - flussonic-python
 
 - name: Make sure flussonic system user exists
   user:
