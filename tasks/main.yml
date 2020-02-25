@@ -27,7 +27,7 @@
       - flussonic
       - flussonic-transcoder
       - flussonic-python
-    state: latest
+    state: present
 
 - name: Make sure flussonic system user exists
   user:
