@@ -1,5 +1,5 @@
 ---
-# handlers file for mediapeers.flussonic
+# handlers file for mediafellows.flussonic
 
 # Ingore errors here as missing license can cause server to fail to start
 # which might be ok when just bakin a new image for later use

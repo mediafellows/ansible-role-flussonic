@@ -1,5 +1,5 @@
 ---
-# tasks file for mediapeers.flussonic
+# tasks file for mediafellows.flussonic
 
 - name: Create video bucket S3 (run on ansible host)
   s3_bucket:

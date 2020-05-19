@@ -1,4 +1,4 @@
-[![Build Status](https://travis-ci.com/mediapeers/ansible-role-flussonic.svg?branch=master)](https://travis-ci.com/mediapeers/ansible-role-flussonic)
+[![Build Status](https://travis-ci.com/mediafellows/ansible-role-flussonic.svg?branch=master)](https://travis-ci.com/mediafellows/ansible-role-flussonic)
 
 # Flussonic Ansible Role
 This is an Ansible role that installs the [Flussonic Streaming server](http://flussonic.com/) and configures it as VOD streaming server with an S3 bucket as source location.
@@ -57,11 +57,11 @@ Include the role into your playbook in the usual way:
     flussonic_bucket_aws_secret_key: abcxyz
     flussonic_admin_pw: supersecret
   roles:
-    - { role: mediapeers.flussonic, licence_key: abc123 }
+    - { role: mediafellows.flussonic, licence_key: abc123 }
 ```
 
 ## License
 BSD, as is.
 
 ## Author Information
-Stefan Horning <horning@mediapeers.com>
+Stefan Horning <stefan.horning@mediafellows.com>
