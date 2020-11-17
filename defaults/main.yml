@@ -1,6 +1,10 @@
 ---
 # defaults file for mediafellows.flussonic
 
+# Packages
+# flussonic_version: 20.08.1 # specify version like this if you want to lock it
+flussonic_extra_packages: true
+
 # You need to set a valid licence key, like this:
 # flussonic_licence_key: abc123
 

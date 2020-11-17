@@ -21,13 +21,25 @@
     update_cache: yes
     state: present
 
-- name: Install flussonic apt packages
+- name: Install Flussonic server apt package in specific version (if version specified)
+  apt:
+    name: "flussonic={{ flussonic_version }}"
+    state: present
+  when: flussonic_version is defined
+
+- name: Install Flussonic server apt package in lastest version (if version not specified)
+  apt:
+    name: flussonic
+    state: present
+  when: flussonic_version is not defined
+
+- name: Install Flussonic extra apt packages
   apt:
     name:
-      - flussonic
       - flussonic-transcoder
       - flussonic-python
     state: present
+  when: flussonic_extra_packages
 
 - name: Make sure flussonic system user exists
   user:
