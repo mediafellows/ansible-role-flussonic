@@ -25,13 +25,17 @@
   apt:
     name: "flussonic={{ flussonic_version }}"
     state: present
-  when: flussonic_version is defined
+  when:
+    - flussonic_version is defined
+    - flussonic_pkg_install
 
 - name: Install Flussonic server apt package in lastest version (if version not specified)
   apt:
     name: flussonic
     state: present
-  when: flussonic_version is not defined
+  when:
+    - flussonic_pkg_install
+    - flussonic_version is not defined
 
 - name: Install Flussonic extra apt packages
   apt:
