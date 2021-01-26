@@ -1,45 +1,45 @@
 ---
 # tasks file for mediafellows.flussonic
 
-- name: Create video bucket S3 (run on ansible host)
-  s3_bucket:
-    name: "{{ flussonic_bucket_name }}"
-    state: present
-    region: "{{ s3_aws_region }}"
-  delegate_to: 127.0.0.1
-  become: false
-  when: s3_create_bucket
+# - name: Create video bucket S3 (run on ansible host)
+#   s3_bucket:
+#     name: "{{ flussonic_bucket_name }}"
+#     state: present
+#     region: "{{ s3_aws_region }}"
+#   delegate_to: 127.0.0.1
+#   become: false
+#   when: s3_create_bucket
 
-- name: Add flussonic apt repository key
-  apt_key:
-    url: 'http://debian.erlyvideo.org/binary/gpg.key'
-    state: present
+# - name: Add flussonic apt repository key
+#   apt_key:
+#     url: 'http://debian.erlyvideo.org/binary/gpg.key'
+#     state: present
 
-- name: Add flussonic apt repository
-  apt_repository:
-    repo: 'deb http://debian.erlyvideo.org binary/'
-    update_cache: yes
-    state: present
+# - name: Add flussonic apt repository
+#   apt_repository:
+#     repo: 'deb http://debian.erlyvideo.org binary/'
+#     update_cache: yes
+#     state: present
 
-- name: Install Flussonic server apt package in specific version (if version specified)
-  apt:
-    name: "flussonic={{ flussonic_version }}"
-    state: present
-  when: flussonic_version is defined
+# - name: Install Flussonic server apt package in specific version (if version specified)
+#   apt:
+#     name: "flussonic={{ flussonic_version }}"
+#     state: present
+#   when: flussonic_version is defined
 
-- name: Install Flussonic server apt package in lastest version (if version not specified)
-  apt:
-    name: flussonic
-    state: present
-  when: flussonic_version is not defined
+# - name: Install Flussonic server apt package in lastest version (if version not specified)
+#   apt:
+#     name: flussonic
+#     state: present
+#   when: flussonic_version is not defined
 
-- name: Install Flussonic extra apt packages
-  apt:
-    name:
-      - flussonic-transcoder
-      - flussonic-python
-    state: present
-  when: flussonic_extra_packages
+# - name: Install Flussonic extra apt packages
+#   apt:
+#     name:
+#       - flussonic-transcoder
+#       - flussonic-python
+#     state: present
+#   when: flussonic_extra_packages
 
 - name: Make sure flussonic system user exists
   user:
