@@ -4,5 +4,6 @@
   vars:
     flussonic_licence_key: abc123
     s3_create_bucket: false
+    flussonic_extra_packages: false
   roles:
     - ansible-role-flussonic
